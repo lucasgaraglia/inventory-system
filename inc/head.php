@@ -6,4 +6,4 @@ el archivo .css con toda la config. -->
 <!-- LA DOCUMENTACION DE BULMA CON ELEMENTOS, COMPONENTES, FORMULARIOS, ETC
 https://bulma.io/documentation/columns/ -->
 <link rel="stylesheet" href="css/bulma.css">
-<link rel="stylesheet" href="index.css">
+<link rel="stylesheet" href="css/index.css">

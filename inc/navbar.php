@@ -1,6 +1,6 @@
 <nav class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-    <a class="navbar-item" href="">
+    <a class="navbar-item" href="index.php?view=home">
       <img src="./img/logo_blue_transparent.png" width="80" height="40">
     </a>
 
