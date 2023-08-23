@@ -36,4 +36,73 @@ function verify_data($filter, $string){
 
 
 
+
+// funcion para limpiar strings (evitar inyecciones SQL y demas)
+function clean_string($string){
+    //  la funcion trim elimina espacios en blanco al inicio y al final
+    $string = trim($string);
+    //  elimina barras invertidas
+    $string = stripslashes($string);
+    //  reemplaza caracteres por nuevos caracteres indicados en el string indicado
+                        // evitamos codigo js (ataque xss)
+    $string = str_ireplace("<script>","",$string);
+    $string = str_ireplace("</script>","",$string);
+    $string = str_ireplace("<script src", "", $string);
+    $string = str_ireplace("<script type=", "", $string);
+                        // evitamos SQL
+    $string = str_ireplace("SELECT * FROM", "", $string);
+    $string = str_ireplace("DELETE FROM", "", $string);
+    $string = str_ireplace("INSERT INTO", "", $string);
+    $string = str_ireplace("DROP TABLE", "", $string);
+    $string = str_ireplace("DROP DATABASE", "", $string);
+    $string = str_ireplace("TRUNCATE TABLE", "", $string);
+    $string = str_ireplace("SHOW TABLES;", "", $string);
+    $string = str_ireplace("SHOW DATABASES;", "", $string);
+                        // evitamos php
+    $string = str_ireplace("<?php", "", $string);
+    $string = str_ireplace("?>", "", $string);
+                        // demas
+    $string = str_ireplace("--", "", $string);
+    $string = str_ireplace("^", "", $string);
+    $string = str_ireplace("<", "", $string);
+    $string = str_ireplace("[", "", $string);
+    $string = str_ireplace("]", "", $string);
+    $string = str_ireplace("==", "", $string);
+    $string = str_ireplace(";", "", $string);
+    $string = str_ireplace("::", "", $string);
+    // devuelta trim y stripslashes con la cadena limpia
+    $string = trim($string);
+    $string = stripslashes($string);
+
+    return $string;
+}
+// ejemplo utilizacion
+// $text = " Hola <script>js::</script>";
+// echo clean_string($text);
+// salida: "Hola js"
+
+
+
+
+// funcion renombrar fotos
+function rename_image($name){
+    $name=str_ireplace(" ", "_", $name);
+    $name=str_ireplace("/", "_", $name);
+    $name=str_ireplace("#", "_", $name);
+    $name=str_ireplace("-", "_", $name);
+    $name=str_ireplace("$", "_", $name);
+    $name=str_ireplace(".", "_", $name);
+    $name=str_ireplace(",", "_", $name);
+    // numero random para evitar conflictos de nombres iguales
+    // de mas de una foto. se podria resolver de otra forma mas
+    // efectiva. porque todavia existe la posibilidad de repeticion,
+    // aunque mucho menor.
+    $name=$name."_".rand(0,100);
+
+    return $name;
+}
+//ejemplo de uso
+// $img_name = "Play Station 5 slim/edition";
+// echo rename_image($img_name);
+
 ?>
