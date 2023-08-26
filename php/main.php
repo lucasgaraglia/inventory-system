@@ -105,4 +105,73 @@ function rename_image($name){
 // $img_name = "Play Station 5 slim/edition";
 // echo rename_image($img_name);
 
+
+
+
+// funcion paginador de tablas
+// parametros (pagina_actual, paginas totales, url, cantidad_de_botones_mostrados)
+// la url seria con el ?page=N al final.
+function table_pagination($active_page, $total_pages, $url, $buttons){
+    $tabla = '<nav class="pagination is-centered is-rounded" role="navigation" arial-label="pagination">';
+
+    // si la pagina activa es la 1, agrego el boton previous, pero deshabilitado. (is-disabled en la clase, y atributo disabled)
+    // en caso contrario, agrego el boton habilitado
+    if($active_page <= 1){
+        $tabla.='
+        <a class="pagination-previous is-disabled" disabled href="#">Previous</a>
+        <ul class="pagination-list">';
+    }else{
+        $tabla.='
+        <a class="pagination-previous" href="'.$url.($active_page-1).'">Previous</a>
+        <ul class="pagination-list">
+            <li><a class="pagination-link" href="'.$url.'1">1</a></li>
+            <li><span class="pagination-ellipsis">&hellip;</span></li> 
+        ';
+    }
+
+    // contador de iteraciones
+    // este for es para contar los botones que se muestran a partir de la pagina en la
+    // que nos encontramos
+    $ci = 0;
+    for($i=$active_page; $i<=$total_pages; $i++){
+        if($ci>=$buttons){
+            break;
+        }
+
+        if($active_page==$i){
+                                    // is-current para que se vea oscuro
+            $table.='
+            <li><a class="pagination-link is-current" href="'.$url.$i.'">.'$i'.</a></li>
+            ';
+        }else{
+            $table.='
+            <li><a class="pagination-link" href="'.$url.$i.'">.'$i'.</a></li>
+            ';
+        }
+
+        $ci++;
+
+    }
+
+    // lo mismo, pero para el boton de next
+    if($active_page >= $total_pages){
+        $tabla.='
+        </ul>
+        <a class="pagination-next is-disabled" disabled>Next</a>
+        ';
+    }else{
+            // el &hellip son puntitos que dividen los botones del ultimo y del primero
+        $tabla.='
+            <li><span class="pagination-ellipsis">&hellip;</span></li>
+            <li><a class="pagination-link" href="'.$url.$total_pages.'">'.$total_pages.'</a></li>
+        </ul>
+        <a class="pagination-next" href="'.$url.($active_page+1).'">Next</a>
+        ';
+    }
+
+    // .= para concatenar
+    $tabla.='</nav>';
+    return $tabla;
+}
+
 ?>
