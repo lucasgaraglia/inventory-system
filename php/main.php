@@ -112,16 +112,16 @@ function rename_image($name){
 // parametros (pagina_actual, paginas totales, url, cantidad_de_botones_mostrados)
 // la url seria con el ?page=N al final.
 function table_pagination($active_page, $total_pages, $url, $buttons){
-    $tabla = '<nav class="pagination is-centered is-rounded" role="navigation" arial-label="pagination">';
+    $table = '<nav class="pagination is-centered is-rounded" role="navigation" arial-label="pagination">';
 
     // si la pagina activa es la 1, agrego el boton previous, pero deshabilitado. (is-disabled en la clase, y atributo disabled)
     // en caso contrario, agrego el boton habilitado
     if($active_page <= 1){
-        $tabla.='
+        $table.='
         <a class="pagination-previous is-disabled" disabled href="#">Previous</a>
         <ul class="pagination-list">';
     }else{
-        $tabla.='
+        $table.='
         <a class="pagination-previous" href="'.$url.($active_page-1).'">Previous</a>
         <ul class="pagination-list">
             <li><a class="pagination-link" href="'.$url.'1">1</a></li>
@@ -155,13 +155,13 @@ function table_pagination($active_page, $total_pages, $url, $buttons){
 
     // lo mismo, pero para el boton de next
     if($active_page >= $total_pages){
-        $tabla.='
+        $table.='
         </ul>
         <a class="pagination-next is-disabled" disabled>Next</a>
         ';
     }else{
             // el &hellip son puntitos que dividen los botones del ultimo y del primero
-        $tabla.='
+        $table.='
             <li><span class="pagination-ellipsis">&hellip;</span></li>
             <li><a class="pagination-link" href="'.$url.$total_pages.'">'.$total_pages.'</a></li>
         </ul>
@@ -170,8 +170,8 @@ function table_pagination($active_page, $total_pages, $url, $buttons){
     }
 
     // .= para concatenar
-    $tabla.='</nav>';
-    return $tabla;
+    $table.='</nav>';
+    return $table;
 }
 
 ?>

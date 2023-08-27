@@ -20,13 +20,13 @@
         </a>
 
         <div class="navbar-dropdown">
-          <a class="navbar-item">
+          <a class="navbar-item" href="index.php?view=user_new">
             New
           </a>
-          <a class="navbar-item">
+          <a class="navbar-item" href="index.php?view=user_list">
             List
           </a>
-          <a class="navbar-item">
+          <a class="navbar-item" href="index.php?view=user_search">
             Search
           </a>
         </div>
