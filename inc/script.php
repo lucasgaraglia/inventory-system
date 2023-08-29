@@ -25,4 +25,4 @@ esto es para el funcionamiento de la navbar responsive -->
     });
 </script>
 
-<script src=./js/ajax.js><script>
+<script src="./js/ajax.js"><script>

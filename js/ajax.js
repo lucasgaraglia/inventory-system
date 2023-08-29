@@ -1,10 +1,10 @@
 
 const ajax_form = document.querySelectorAll(".FormAjax");
 
-function submit_ajax_form(e){
+function submit_ajax_form(event){
     // esto es para que, al enviar el formulario, no se redirija
     // a la url especificada en action
-    e.preventDefault();
+    event.preventDefault();
 
     // ventana de confirmacion, aceptar o cancelar
     let submit=confirm("Do you want to send this form?");
@@ -40,14 +40,13 @@ function submit_ajax_form(e){
             let container=document.querySelector(".form-rest");
             // dentro de el, escribimos la respuesta
             container.innerHTML = answer;
-        })
+        });
     }
 }
 
-ajax_form.forEach(
-    forms => {
+ajax_form.forEach(forms => {
         // cuando se submitea el formulario, se ejecuta la funcion submit_ajax_form
-        forms.addEventListener("submit", submit_ajax_form);
+        forms.addEventListener("submit", submit_ajax_form());
     }
 
-)
+);
